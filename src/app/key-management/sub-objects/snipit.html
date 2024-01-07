@@ -1,0 +1,46 @@
+<script>
+            $(document).ready(function () {
+                const url = "http://localhost:3000";
+                //const url = "https://xqzxb7pm2a.execute-api.us-east-1.amazonaws.com/prod";
+                //const url = "https://xqzxb7pm2a.execute-api.us-east-1.amazonaws.com/prod/mock";
+
+                $('#nav').load('navbar.html');
+
+                $.ajax({
+                    url: url + "/apikey/byStringPart?name=",
+                    success: function (res) {
+                        var buttonList = "";
+                        for (var i in res.apiKeyObjects) {
+                            console.log(i)
+                            buttonList += ('<a href="#" class="list-group-item list-group-item-action key-button" data-id="' + res.apiKeyObjects[i].id + '" >' + res.apiKeyObjects[i].name + '</a>');
+
+                        }
+                        $("#keyList").html(buttonList);
+                    }
+                });
+                    
+
+                $(document).on('click', '.key-button', function () {
+                    // your function here
+                    console.log($(this).data('id'));
+
+                    $.ajax({
+                        url: url + "/apikey?keyId="+$(this).data('id') ,
+                        success: function (res) {
+
+                            $('#inputKeyName').val(res.apiKey.name)
+                            $('#inputKeyDescription').val(res.apiKey.name)
+                            $('#inputKeyID').val(res.apiKey.id)
+
+                        }
+                    });
+
+
+                });
+
+
+            });
+
+
+
+        </script>
