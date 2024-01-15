@@ -20,8 +20,6 @@ export class KeyManagementComponent {
   targetID = 0;
   switchActiveKey(val : number){
     this.targetID = val
-    console.log("parent fired", val , this.targetID);
-
   }
 
 }

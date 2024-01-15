@@ -8,10 +8,6 @@ import {KeyObject} from '../../../key-object';
   imports: [],
   template: `
   <div>
-    <p>
-      key-info works! {{targetID}}
-    </p>
-
     <form>
       <div class="form-group row">
         <label for="keyID" class="col-sm-2 col-form-label">ID</label>
@@ -20,10 +16,23 @@ import {KeyObject} from '../../../key-object';
         </div>
       </div>
       <div class="form-group row">
-        <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+        <label for="inputName" class="col-sm-2 col-form-label">Name</label>
         <div class="col-sm-10">
-          <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+          <input type="text" class="form-control" id="inputName" placeholder="key name" value={{this.keyObj?.name}}>
         </div>
+      </div>
+      <div class="form-group row">
+        <label for="createdDate" class="col-sm-2 col-form-label">Creation Date</label>
+        <div class="col-sm-10">
+          <input type="text" readonly class="form-control-plaintext" id="createdDate" value={{this.keyObj?.createdDate}}>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlSelect1">Enabled</label>
+        <select class="form-control" id="exampleFormControlSelect1" value={{this.keyObj?.enabled}}>
+          <option>true</option>
+          <option>false</option>
+        </select>
       </div>
     </form>
   <div>
@@ -35,7 +44,12 @@ export class KeyInfoComponent {
   keyObjectList : KeyObject[] = []
   keyObj : KeyObject | undefined;
   constructor(private requestHandler : RequestHandlerService  ) {
-     this.requestHandler.getKeys().subscribe(data => this.keyObjectList = data.items);
-     this.keyObj = this.keyObjectList.find(i => i.id === this.targetID);
+    // this.keyObj = this.keyObjectList.find(i => i.id === this.targetID);
+  }
+  ngOnChanges(){
+    this.getKeyObjectValue();
+  }
+  getKeyObjectValue(){
+    this.requestHandler.getKeys().subscribe(data => this.keyObj = data.items.find(i => i.id === this.targetID));
   }
 }

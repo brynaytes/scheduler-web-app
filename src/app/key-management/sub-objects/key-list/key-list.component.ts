@@ -26,7 +26,6 @@ export class KeyListComponent {
   @Output() keyClicked = new EventEmitter<any>();
   test1(val : number){
     this.keyClicked.emit(val);
-    console.log('child fired')
   }
 }
 
