@@ -27,5 +27,7 @@ export class KeyListComponent {
   test1(val : number){
     this.keyClicked.emit(val);
   }
+
+
 }
 
