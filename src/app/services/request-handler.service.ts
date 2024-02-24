@@ -9,8 +9,9 @@ import { TokenStorage } from '../token-storage';
 @Injectable({
   providedIn: 'any',
 })
-export class RequestHandlerService {
 
+export class RequestHandlerService {
+  
   constructor(private http: HttpClient, private activatedRoute: ActivatedRoute, private router: Router ) { }
   private url = 'https://xqzxb7pm2a.execute-api.us-east-1.amazonaws.com/prod';
 
@@ -20,45 +21,39 @@ export class RequestHandlerService {
     return keyItemList;
   }
 
-  doStuff(){
-    console.log("stuff");
-  }
-  getAuthTokens(code : string){
-    let authstuff = this.http.get<TokenStorage>(this.url + "/login/"+code);
-    return authstuff;
+  async getAuthTokens(code: string): Promise<TokenStorage | undefined> {
+    try {
+      const authstuff = await this.http.get<TokenStorage>(this.url + '/login/' + code).toPromise();
+      return authstuff;
+    } catch (error) {
+      console.error('Error fetching auth tokens:', error);
+      throw error;
+    }
   }
 
-  checkForAuthcodeInParams(){
-    let access_token = "",id_token = "";
-    this.activatedRoute.queryParams.subscribe(params => {
-      const code = params['code'];
-      let tokens;
-      if(code){
-        let data = this.getAuthTokens(code).subscribe((data) => {
-          if(!data.error){
-            console.log("dfdfdfdfdfd",data);
-            tokens = data;
-            console.log(tokens.access_token);
-            access_token = tokens.access_token;
-            id_token = tokens.id_token;
-          }
-        });
-        
-        // this.router.navigate(
-        //   [], 
-        //   {
-        //     relativeTo: this.activatedRoute,
-        //     queryParams: {  },
-        //     queryParamsHandling: null
-        //   }
-        // );
-      }
-
+  public async checkForAuthcodeInParams(){
+    var tokens : TokenStorage |undefined;
+    var code : string = "";
+     this.activatedRoute.queryParams.subscribe(params => {
+      code = params['code'];
     });
-    console.log(access_token);
-    sessionStorage.setItem("key", "value");
-    sessionStorage.setItem('access_token',access_token)
-    sessionStorage.setItem('id_token', id_token);
-    
+    if(code){
+
+      tokens = await  this.getAuthTokens(code);
+
+      if(!tokens?.error && tokens?.access_token){
+        sessionStorage.setItem("access_token" , tokens?.access_token!);
+        sessionStorage.setItem("id_token" , tokens?.id_token!);
+      }
+    }
+      this.router.navigate(
+        [], 
+        {
+          relativeTo: this.activatedRoute,
+          queryParams: {  },
+          queryParamsHandling: null
+        }
+      );
+    return tokens;
   }
 }

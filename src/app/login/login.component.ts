@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import {RequestHandlerService} from '../services/request-handler.service';
 import {Router, ActivatedRoute, Params} from '@angular/router';
+import { TokenStorage } from '../token-storage';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -16,16 +18,15 @@ import {Router, ActivatedRoute, Params} from '@angular/router';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  constructor(private requestHandler : RequestHandlerService ,private activatedRoute: ActivatedRoute ) {
-    
-    
 
- }
 
- ngOnInit() {
-  //this.requestHandler.checkForAuthcodeInParams();
+  constructor(public requestHandler : RequestHandlerService ,private activatedRoute: ActivatedRoute, public http : HttpClient) {
+
   }
-
+  async ngOnInit() {
+    await this.requestHandler.checkForAuthcodeInParams();
+  }
+  
 }
 
 
