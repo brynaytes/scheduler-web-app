@@ -23,12 +23,7 @@ export class LoginComponent {
  }
 
  ngOnInit() {
-  this.activatedRoute.queryParams.subscribe(params => {
-      const code = params['code'];
-      if(code)
-        this.requestHandler.getAuthTokens(code).subscribe(data => console.log(data));;
-
-    });
+  //this.requestHandler.checkForAuthcodeInParams();
   }
 
 }
