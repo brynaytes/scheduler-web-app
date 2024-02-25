@@ -31,7 +31,7 @@ export class RequestHandlerService {
     }
   }
 
-  public async checkForAuthcodeInParams(){
+  public async beginAuth(){
     var tokens : TokenStorage |undefined;
     var code : string = "";
      this.activatedRoute.queryParams.subscribe(params => {

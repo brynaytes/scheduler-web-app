@@ -3,6 +3,7 @@ import {RequestHandlerService} from '../services/request-handler.service';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import { TokenStorage } from '../token-storage';
 import { HttpClient } from '@angular/common/http';
+import { JwtService } from '../jwt.service';
 
 @Component({
   selector: 'app-login',
@@ -20,11 +21,18 @@ import { HttpClient } from '@angular/common/http';
 export class LoginComponent {
 
 
-  constructor(public requestHandler : RequestHandlerService ,private activatedRoute: ActivatedRoute, public http : HttpClient) {
+  constructor(public requestHandler : RequestHandlerService ,private activatedRoute: ActivatedRoute, public http : HttpClient, private jwtService :JwtService) {
 
   }
   async ngOnInit() {
-    await this.requestHandler.checkForAuthcodeInParams();
+    if("access_token" in sessionStorage){
+      //token was found
+      console.log("has session")
+    }else{
+      const auth_response = await this.requestHandler.beginAuth();
+      console.log(auth_response)
+    }
+ 
   }
   
 }
