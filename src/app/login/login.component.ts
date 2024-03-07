@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import {RequestHandlerService} from '../services/request-handler.service';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import { TokenStorage } from '../token-storage';
 import { HttpClient } from '@angular/common/http';
@@ -21,7 +20,7 @@ import { JwtService } from '../jwt.service';
 export class LoginComponent {
 
 
-  constructor(public requestHandler : RequestHandlerService ,private activatedRoute: ActivatedRoute, public http : HttpClient, private jwtService :JwtService) {
+  constructor(private activatedRoute: ActivatedRoute, public http : HttpClient, private jwtService :JwtService) {
 
   }
   async ngOnInit() {

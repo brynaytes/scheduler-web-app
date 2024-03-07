@@ -1,27 +1,20 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {KeyObjectItemsArray} from '../key-object-items-array';
+import {KeyObjectItemsArray} from '../../key-object-items-array';
 import { HttpClientModule } from '@angular/common/http';
 import {Router, ActivatedRoute, Params} from '@angular/router';
-import { TokenStorage } from '../token-storage';
+import { TokenStorage } from '../../token-storage';
 
 
 @Injectable({
-  providedIn: 'any',
+  providedIn: 'any'
 })
-
-export class RequestHandlerService {
-  
+export class UserActionService {
   private code : string | undefined;
 
   constructor(private http: HttpClient, private activatedRoute: ActivatedRoute, private router: Router ) {}
   private url = 'https://xqzxb7pm2a.execute-api.us-east-1.amazonaws.com/prod';
 
-
-  getKeys(){
-    let keyItemList = this.http.get<KeyObjectItemsArray>(this.url + "/keys");
-    return keyItemList;
-  }
 
   async getAuthTokens(code: string): Promise<TokenStorage | undefined> {
     try {
@@ -60,4 +53,5 @@ export class RequestHandlerService {
       // );
     return tokens;
   }
+
 }

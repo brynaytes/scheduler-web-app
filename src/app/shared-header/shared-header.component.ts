@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { RouterModule ,ActivatedRoute,Router, NavigationEnd} from '@angular/router';
-import {RequestHandlerService} from '../services/request-handler.service';
 import { HttpClient } from '@angular/common/http';
 import { JwtService } from '../jwt.service';
 import { CommonModule } from '@angular/common';
-
+import { UserActionService } from '../services/user-action/user-action.service';
 
 @Component({
   selector: 'app-shared-header',
@@ -17,7 +16,7 @@ export class SharedHeaderComponent {
   
   public username  : string;
 
-  constructor(public requestHandler : RequestHandlerService ,private activatedRoute: ActivatedRoute, public http : HttpClient, private jwtService :JwtService, private router: Router ) {
+  constructor(public userService : UserActionService ,private activatedRoute: ActivatedRoute, public http : HttpClient, private jwtService :JwtService, private router: Router ) {
 
 
     this.router.events.subscribe(async value => {
@@ -33,11 +32,10 @@ export class SharedHeaderComponent {
           }else{
             //valid token - show as logged in 
             this.username = this.jwtService.getClaim(localStorage.getItem("access_token")!,"username" );
-            console.log("username",this.username);
           }
         }else{
           //no token, not logged in 
-          const auth_response = await this.requestHandler.beginAuth();
+          const auth_response = await this.userService.beginAuth();
         }
 
       }

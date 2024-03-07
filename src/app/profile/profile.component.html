@@ -1,27 +1,30 @@
 <p>profile works!</p>
 <div>
-    <div>
-        <label>username</label>
-        <h3 id="profile-username">{{username}}</h3>
-    </div>
-    <div>
-        <label>first name</label>
-        <h3 id="profile-first-name">{{firstName}}</h3>
-    </div>
-    <div>
-        <label>last name</label>
-        <h3 id="profile-last-name">{{lastName}}</h3>
-    </div>
-    <div>
-        <label>address</label>
-        <h3 id="profile-address">{{address}}</h3>
-    </div>
-    <div>
-        <label>email</label>
-        <h3 id="profile-email">{{email}}</h3>
-    </div>
-    <div>
-        <label>phone</label>
-        <h3 id="profile-phone">{{phone}}</h3>
-    </div>
+    <form>
+        <div>
+            <label for="profile-username">username</label>
+            <input type="text" id="profile-username" name="profile-username" value="{{username}}" disabled="true">
+        </div>
+        <div>
+            <label for="profile-first-name">first name</label>
+            <input type="text" id="profile-first-name" name="profile-first-name" value="{{firstName}}" >
+        </div>
+        <div>
+            <label for="profile-last-name">last name</label>
+            <input type="text" id="profile-last-name" name="profile-last-name" value="{{lastName}}" >
+        </div>
+        <div>
+            <label for="profile-address">address</label>
+            <input type="text" id="profile-address" name="profile-address" value="{{address}}" >
+        </div>
+        <div>
+            <label for="profile-email">email</label>
+            <input type="text" id="profile-email" name="profile-email" value="{{email}}" >
+        </div>
+        <div>
+            <label for="profile-phone">phone</label>
+            <input type="text" id="profile-phone" name="profile-phone" value="{{phone}}" >
+        </div>
+        <input type="submit" value="Submit">
+    </form>
 </div>
