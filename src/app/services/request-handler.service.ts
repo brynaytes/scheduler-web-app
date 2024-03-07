@@ -12,7 +12,9 @@ import { TokenStorage } from '../token-storage';
 
 export class RequestHandlerService {
   
-  constructor(private http: HttpClient, private activatedRoute: ActivatedRoute, private router: Router ) { }
+  private code : string | undefined;
+
+  constructor(private http: HttpClient, private activatedRoute: ActivatedRoute, private router: Router ) {}
   private url = 'https://xqzxb7pm2a.execute-api.us-east-1.amazonaws.com/prod';
 
 
@@ -33,27 +35,29 @@ export class RequestHandlerService {
 
   public async beginAuth(){
     var tokens : TokenStorage |undefined;
-    var code : string = "";
-     this.activatedRoute.queryParams.subscribe(params => {
-      code = params['code'];
-    });
+    var code : string | null =this.activatedRoute.snapshot.queryParamMap.get('code');;
+
     if(code){
 
       tokens = await  this.getAuthTokens(code);
 
+
+
       if(!tokens?.error && tokens?.access_token){
-        sessionStorage.setItem("access_token" , tokens?.access_token!);
-        sessionStorage.setItem("id_token" , tokens?.id_token!);
+        localStorage.setItem("access_token" , tokens?.access_token!);
+        localStorage.setItem("id_token" , tokens?.id_token!);
       }
     }
-      this.router.navigate(
-        [], 
-        {
-          relativeTo: this.activatedRoute,
-          queryParams: {  },
-          queryParamsHandling: null
-        }
-      );
+
+    this.router.navigate(['/home'])
+      // this.router.navigate(
+      //   ['.'], 
+      //   {
+      //     relativeTo: this.activatedRoute,
+      //     queryParams: {  },
+      //     queryParamsHandling: null
+      //   }
+      // );
     return tokens;
   }
 }

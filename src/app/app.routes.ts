@@ -3,6 +3,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { AboutComponent } from './about/about.component';
 import { KeyManagementComponent } from './key-management/key-management.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 const routeConfig: Routes = [
@@ -25,6 +26,11 @@ const routeConfig: Routes = [
       path: 'keys',
       component: KeyManagementComponent,
       title: 'keys'
+    },
+    {
+      path: 'profile',
+      component: ProfileComponent,
+      title: 'profile'
     }
   ];
   

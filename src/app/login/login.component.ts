@@ -25,13 +25,7 @@ export class LoginComponent {
 
   }
   async ngOnInit() {
-    if("access_token" in sessionStorage){
-      //token was found
-      console.log("has session")
-    }else{
-      const auth_response = await this.requestHandler.beginAuth();
-      console.log(auth_response)
-    }
+
  
   }
   
