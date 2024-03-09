@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import {SharedHeaderComponent} from './shared-header/shared-header.component';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet,  RouterModule, SharedHeaderComponent ],
+  imports: [CommonModule, RouterOutlet,  RouterModule, SharedHeaderComponent ,HttpClientModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

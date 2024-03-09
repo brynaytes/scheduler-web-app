@@ -2,7 +2,7 @@ import { Component ,Input,Output,EventEmitter } from '@angular/core';
 import {KeyObject} from '../../../key-object';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import {RequestHandlerService} from '../../../services/request-handler.service';
+import {RequestHandlerService} from '../../../services/request-handler/request-handler.service';
 
 @Component({
   selector: 'app-key-list',
@@ -27,5 +27,7 @@ export class KeyListComponent {
   test1(val : number){
     this.keyClicked.emit(val);
   }
+
+
 }
 
