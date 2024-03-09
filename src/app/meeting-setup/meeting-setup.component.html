@@ -1,0 +1,26 @@
+<p>meeting-setup works!</p>
+
+<div>
+    <form>
+        <div>
+            <label for="profile-username">title</label>
+            <input type="text" id="profile-username" name="profile-username" value="" >
+        </div>
+        <div>
+            <label for="profile-first-name">description</label>
+            <input type="text" id="profile-first-name" name="profile-first-name" value="" >
+        </div>
+
+        <mat-form-field>
+            <mat-label>Choose a date</mat-label>
+            <input matInput [matDatepicker]="picker">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+          
+
+
+        <input type="submit" value="Create meeting">
+    </form>
+</div>
