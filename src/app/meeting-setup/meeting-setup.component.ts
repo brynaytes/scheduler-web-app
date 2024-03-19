@@ -14,5 +14,7 @@ import {provideNativeDateAdapter} from '@angular/material/core';
   providers: [provideNativeDateAdapter()],
 })
 export class MeetingSetupComponent {
-
+  public dateChosen(){
+    console.log("stuff",event)
+  }
 }
