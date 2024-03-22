@@ -4,12 +4,13 @@ import { RouterOutlet } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import {SharedHeaderComponent} from './shared-header/shared-header.component';
 import { HttpClientModule } from '@angular/common/http';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet,  RouterModule, SharedHeaderComponent ,HttpClientModule],
+  imports: [CommonModule, RouterOutlet,  RouterModule, SharedHeaderComponent ,HttpClientModule,NgxMaterialTimepickerModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

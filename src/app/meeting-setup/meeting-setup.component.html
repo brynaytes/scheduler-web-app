@@ -10,17 +10,18 @@
             <label for="profile-first-name">description</label>
             <input type="text" id="profile-first-name" name="profile-first-name" value="" >
         </div>
+        <label for="datePicker">Add a Date</label>
 
-        <mat-form-field>
-            <mat-label>Choose a date</mat-label>
-            <input matInput [matDatepicker]="picker">
-            <mat-hint>MM/DD/YYYY</mat-hint>
-            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
-          
+        <mat-datepicker-toggle id="datePicker" matIconSuffix [for]="picker"></mat-datepicker-toggle>
 
-
+        <input matInput [matDatepicker]="picker" placeholder="Choose a date" (dateChange)="dateUpdate($event)" style="visibility: hidden !important;">
+        
+        <mat-datepicker #picker></mat-datepicker>
+        <br><br>
+        <div class="" *ngFor="let date of SelectedDateList; index as i">
+            <app-timepickerforday [date]='date' [itemIndex]='i' (removeDateEvent)="removeItemFromEvent($event)"></app-timepickerforday>
+        </div>
+        <br>
         <input type="submit" value="Create meeting">
     </form>
 </div>
