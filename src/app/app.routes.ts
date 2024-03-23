@@ -8,7 +8,6 @@ import { MeetingSetupComponent } from './meeting-setup/meeting-setup.component';
 import { MeetingViewComponent } from './meeting-view/meeting-view.component';
 import { TimeEntryComponent } from './time-entry/time-entry.component';
 
-
 const routeConfig: Routes = [
     {
       path: '',

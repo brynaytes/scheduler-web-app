@@ -1,1 +1,24 @@
-<p>meeting-view works!</p>
+<p>meeting-setup works!</p>
+
+<div>
+        <div>
+            <h4>title</h4>
+        </div>
+        <div>
+            <h2>loren ipsum etc</h2>
+        </div>
+        <br><br>
+        <div class="" *ngFor="let date of SelectedDateList; index as id">
+            <div>
+                <a class="">{{date.date}}</a>
+                <div class="" *ngFor="let time of date.times; index as it">
+                        <p>{{time.startTime}} - {{time.endTime}}</p>
+                        <label for="available-checkbox">available</label>
+                        <input type="checkbox" id="available-checkbox" name="available-checkbox">
+                </div>
+            </div>
+        </div>
+        <br>
+        <input type="submit" value="Create meeting" (click)="doStuff()">
+
+</div>

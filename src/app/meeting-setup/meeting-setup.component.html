@@ -1,7 +1,6 @@
 <p>meeting-setup works!</p>
 
 <div>
-    <form>
         <div>
             <label for="profile-username">title</label>
             <input type="text" id="profile-username" name="profile-username" value="" >
@@ -18,10 +17,19 @@
         
         <mat-datepicker #picker></mat-datepicker>
         <br><br>
-        <div class="" *ngFor="let date of SelectedDateList; index as i">
-            <app-timepickerforday [date]='date' [itemIndex]='i' (removeDateEvent)="removeItemFromEvent($event)"></app-timepickerforday>
+        <div class="" *ngFor="let date of SelectedDateList; index as id">
+            <div>
+                <a class="">{{date.date}}</a>
+                <input type="button" value="X" (click)="removeItem(id)"/>
+                <input type="button" value="add a time +" (click)="addTime(id)"/>
+                <div class="" *ngFor="let time of date.times; index as it">
+                        <ngx-timepicker-field [defaultTime]="'11:11 am'" [controlOnly]="true"    (timeChanged)="addStartTime($event,id,it)"/>
+                        <ngx-timepicker-field [defaultTime]="'11:12 am'" [controlOnly]="true" (timeChanged)="addEndTime($event,id,it)"/>
+                        <input type="button" value="X" (click)="removeTime(id,it)"/>
+                </div>
+            </div>
         </div>
         <br>
-        <input type="submit" value="Create meeting">
-    </form>
+        <input type="submit" value="Create meeting" (click)="doStuff()">
+
 </div>
