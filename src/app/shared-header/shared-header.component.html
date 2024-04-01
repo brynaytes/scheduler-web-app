@@ -16,7 +16,10 @@
             <a [routerLink]="['/meetingSetup']" class="nav-link">Create Meeting</a>
           </li>
           <li class="nav-item">
-            <a [routerLink]="['/meetingView']" class="nav-link">Create Meeting</a>
+            <a [routerLink]="['/meetingView']" class="nav-link">View Meeting</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link  "  *ngIf="username" [routerLink]="['/myMeetings']">meetings</a>
           </li>
           <li class="nav-item">
             <a class="nav-link  " *ngIf="!username" [routerLink]="['/login']">Login</a>

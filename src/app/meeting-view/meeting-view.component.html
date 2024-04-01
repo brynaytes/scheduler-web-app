@@ -14,7 +14,7 @@
                 <div class="" *ngFor="let time of date.times; index as it">
                         <p>{{time.startTime}} - {{time.endTime}}</p>
                         <label for="available-checkbox">available</label>
-                        <input type="checkbox" id="available-checkbox" name="available-checkbox">
+                        <input type="checkbox" id="available-checkbox" name="available-checkbox" value={{time.isAvailable}}  (click)="updateAvailability(id,it)"> 
                 </div>
             </div>
         </div>

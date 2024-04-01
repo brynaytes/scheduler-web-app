@@ -14,13 +14,15 @@ import {NgxMaterialTimepickerModule, NgxMaterialTimepickerToggleIconDirective} f
   styleUrl: './meeting-view.component.css'
 })
 export class MeetingViewComponent {
-  SelectedDateList :Array<{ date: string; times: Array<{ startTime: string; endTime: string }> }>= [
+  SelectedDateList :Array<{ date: string; times: Array<{ startTime: string; endTime: string, timeID : string,isAvailable:boolean }> }>= [
       {
           "date": "3/20/2024",
           "times": [
               {
                   "startTime": "11:13 AM",
-                  "endTime": "11:09 AM"
+                  "endTime": "11:09 AM",
+                  "timeID" : "1",
+                  "isAvailable" : false
               }
           ]
       },
@@ -29,11 +31,15 @@ export class MeetingViewComponent {
           "times": [
               {
                   "startTime": "7:20 PM",
-                  "endTime": "10:12 PM"
+                  "endTime": "10:12 PM",
+                  "timeID" : "2",
+                  "isAvailable" : false
               },
               {
                   "startTime": "11:11 PM",
-                  "endTime": "11:26 PM"
+                  "endTime": "11:26 PM",
+                  "timeID" : "3",
+                  "isAvailable" : false
               }
           ]
       }
@@ -42,6 +48,9 @@ export class MeetingViewComponent {
 
   public doStuff(){
     console.log(this.SelectedDateList)
+  }
 
+  public updateAvailability(id :number, it : number){
+    this.SelectedDateList[id].times[it].isAvailable =  !this.SelectedDateList[id].times[it].isAvailable ;
   }
 } 
