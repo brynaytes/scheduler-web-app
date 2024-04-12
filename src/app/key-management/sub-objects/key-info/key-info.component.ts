@@ -50,6 +50,6 @@ export class KeyInfoComponent {
     this.getKeyObjectValue();
   }
   getKeyObjectValue(){
-    this.requestHandler.getKeys().subscribe(data => this.keyObj = data.items.find(i => i.id === this.targetID));
+    //this.requestHandler.getKeys().subscribe(data => this.keyObj = data.items.find(i => i.id === this.targetID));
   }
 }

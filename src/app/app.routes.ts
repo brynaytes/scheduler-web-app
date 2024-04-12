@@ -31,7 +31,7 @@ const routeConfig: Routes = [
       title: 'meetingSetup'
     },    
     {
-      path: 'meetingView',
+      path: 'meetingView/:meetingID',
       component: MeetingViewComponent,
       title: 'meetingView'
     },

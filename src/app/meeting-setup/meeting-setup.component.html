@@ -2,12 +2,12 @@
 
 <div>
         <div>
-            <label for="profile-username">title</label>
-            <input type="text" id="profile-username" name="profile-username" value="" >
+            <label for="meetingTitle">title</label>
+            <input type="text" id="meetingTitle" name="meetingTitle" value="" [(ngModel)]="meetingTitle">
         </div>
         <div>
-            <label for="profile-first-name">description</label>
-            <input type="text" id="profile-first-name" name="profile-first-name" value="" >
+            <label for="meetingDescription">description</label>
+            <input type="text" id="meetingDescription" name="meetingDescription" value="" [(ngModel)]="meetingDescription">
         </div>
         <label for="datePicker">Add a Date</label>
 
@@ -30,6 +30,6 @@
             </div>
         </div>
         <br>
-        <input type="submit" value="Create meeting" (click)="doStuff()">
+        <input type="submit" value="Create meeting" (click)="createMeeting()">
 
 </div>

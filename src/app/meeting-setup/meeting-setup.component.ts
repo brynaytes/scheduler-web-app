@@ -1,15 +1,17 @@
-import { Component  } from '@angular/core';
+import { Component, Input  } from '@angular/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {provideNativeDateAdapter} from '@angular/material/core';
 import { CommonModule ,NgFor} from '@angular/common';
 import {NgxMaterialTimepickerModule, NgxMaterialTimepickerToggleIconDirective} from 'ngx-material-timepicker';
+import { RequestHandlerService } from '../services/request-handler/request-handler.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-meeting-setup',
   standalone: true,
-  imports: [MatFormFieldModule, MatInputModule, MatDatepickerModule,CommonModule ,NgFor ,NgxMaterialTimepickerModule ],
+  imports: [MatFormFieldModule, MatInputModule, MatDatepickerModule,CommonModule ,NgFor ,NgxMaterialTimepickerModule,FormsModule ],
   templateUrl: './meeting-setup.component.html',
   styleUrl: './meeting-setup.component.css',
   providers: [provideNativeDateAdapter()],
@@ -17,6 +19,8 @@ import {NgxMaterialTimepickerModule, NgxMaterialTimepickerToggleIconDirective} f
 
 export class MeetingSetupComponent {
   SelectedDateList :Array<{ date: string; times: Array<{ startTime: string; endTime: string }> }>= [];
+  @Input() meetingDescription: string;
+  @Input() meetingTitle: string;
 
   public dateUpdate(event : any){
     let chosenDate = event.target.value;
@@ -66,6 +70,16 @@ export class MeetingSetupComponent {
   }
   public doStuff(){
     console.log(this.SelectedDateList)
-
   }
+
+  public createMeeting(){
+    let obj = {
+      title : this.meetingTitle,
+      description :this.meetingDescription,
+      dateTimes : this.SelectedDateList
+    }
+
+    console.log(RequestHandlerService.sendData(obj,"createMeeting","/meetings/create","PUT"));
+  }
+
 } 

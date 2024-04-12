@@ -19,7 +19,7 @@ export class KeyListComponent {
   keyObjectList : KeyObject[] = []
 
   constructor(private requestHandler : RequestHandlerService  ) {
-     this.requestHandler.getKeys().subscribe(data => this.keyObjectList = data.items);
+ //    this.requestHandler.getKeys().subscribe(data => this.keyObjectList = data.items);
 
   }
 
