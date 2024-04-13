@@ -1,0 +1,9 @@
+<h2 mat-dialog-title>meeting created</h2>
+<mat-dialog-content>
+   url : <input type="text" value="{{meetingUrl}}" #userinput>
+   <button (click)="copyInputMessage(userinput)" value="click to copy" >Copy </button>
+
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>close</button>
+</mat-dialog-actions>

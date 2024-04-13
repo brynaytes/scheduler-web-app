@@ -13,10 +13,7 @@
             <a [routerLink]="['/about']" class="nav-link">About</a>
           </li>
           <li class="nav-item">
-            <a [routerLink]="['/meetingSetup']" class="nav-link">Create Meeting</a>
-          </li>
-          <li class="nav-item">
-            <a [routerLink]="['/meetingView']" class="nav-link">View Meeting</a>
+            <a [routerLink]="['/meetingSetup']"   *ngIf="username"  class="nav-link">Create Meeting</a>
           </li>
           <li class="nav-item">
             <a class="nav-link  "  *ngIf="username" [routerLink]="['/myMeetings']">meetings</a>
