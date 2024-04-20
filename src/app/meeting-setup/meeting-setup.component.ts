@@ -9,7 +9,6 @@ import { RequestHandlerService } from '../services/request-handler/request-handl
 import { FormsModule } from '@angular/forms';
 import {
   MatDialog,
-  MatDialogRef,
   MatDialogActions,
   MatDialogClose,
   MatDialogTitle,

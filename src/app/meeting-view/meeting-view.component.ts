@@ -1,31 +1,35 @@
-import { Component  } from '@angular/core';
+import { Component,Input  } from '@angular/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import {provideNativeDateAdapter} from '@angular/material/core';
 import { CommonModule ,NgFor} from '@angular/common';
-import {NgxMaterialTimepickerModule, NgxMaterialTimepickerToggleIconDirective} from 'ngx-material-timepicker';
 import { RequestHandlerService } from '../services/request-handler/request-handler.service';
 import { ActivatedRoute } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { JwtService } from '../jwt.service';
 
 @Component({
   selector: 'app-meeting-view',
   standalone: true,
-  imports: [MatFormFieldModule, MatInputModule, MatDatepickerModule,CommonModule ,NgFor ,NgxMaterialTimepickerModule ],
+  imports: [MatFormFieldModule, MatInputModule, MatDatepickerModule,CommonModule ,NgFor,FormsModule ],
   templateUrl: './meeting-view.component.html',
   styleUrl: './meeting-view.component.css'
 })
-
 
 export class MeetingViewComponent {
   meetingTitle = "";
   meetingDescription = "";
   isDataLoaded = false;
   meetingID = "";
+  @Input() name : string;
 
-  SelectedDateList :Array<{ date: string; times: Array<{ startTime: string; endTime: string, timeID : string,isAvailable:boolean }> }>= [];
+  SelectedDateList :Array<{ date: string; times: Array<{ startTime: string; endTime: string, isAvailable: boolean }> }>= [];
 
-  constructor(public _route: ActivatedRoute){ 
+  constructor(public _route: ActivatedRoute, private jwtService :JwtService){ 
+    let tempName =      this.name = this.jwtService.getClaim(localStorage.getItem("access_token")!,"username" );
+    if(tempName){
+      this.name = tempName;
+    }
   }
 
   public doStuff(){
@@ -42,6 +46,7 @@ export class MeetingViewComponent {
     }
     let path = "/meetings/"+meetingID;
     let resp = await RequestHandlerService.sendData(obj,"getMeeting",path)
+    let name = "";
 
     this.SelectedDateList = resp.body.data.dateTimes;
     this.meetingTitle = resp.body.data.title;
@@ -56,4 +61,14 @@ export class MeetingViewComponent {
     });
     await this.getMeetings(this.meetingID);
   }
+
+  public async createTimeRecord(){
+    let obj = {
+      MeetingID  : this.meetingID,
+      name :this.name,
+      dateTimes : this.SelectedDateList
+    }
+    let response = await RequestHandlerService.sendData(obj,"addTimes","/meetings/create","PUT");
+  }
+
 } 
