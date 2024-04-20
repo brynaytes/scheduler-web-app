@@ -1,0 +1,25 @@
+<div>
+    <span *ngIf="isDataLoaded">
+        <div>
+            <h4  name="meetingTitle">{{meetingTitle}}</h4>
+        </div>
+        <div>
+            <h4  name="meetingDescription">{{meetingDescription}}</h4>
+        </div>
+        <label for="name">name : </label>
+        <input type="text" id="name" name="name" value="" [(ngModel)]="name">
+        <br><br>
+        <div class="" *ngFor="let date of SelectedDateList; index as id">
+            <div>
+                <a class="">{{date.date}}</a>
+                <div class="" *ngFor="let time of date.times; index as it">
+                        <p>{{time.startTime}} - {{time.endTime}}</p>
+                        <label for="available-checkbox">available</label>
+                        <input type="checkbox" id="available-checkbox" name="available-checkbox" value={{time.isAvailable}}  (click)="updateAvailability(id,it)"> 
+                </div>
+            </div>
+        </div>
+        <br>
+        <input type="submit" value="Save time" (click)="createTimeRecord()">
+    </span> 
+</div>
