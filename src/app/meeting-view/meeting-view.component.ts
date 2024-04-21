@@ -1,52 +1,43 @@
-import { Component  } from '@angular/core';
+import { Component,Input  } from '@angular/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import {provideNativeDateAdapter} from '@angular/material/core';
 import { CommonModule ,NgFor} from '@angular/common';
-import {NgxMaterialTimepickerModule, NgxMaterialTimepickerToggleIconDirective} from 'ngx-material-timepicker';
 import { RequestHandlerService } from '../services/request-handler/request-handler.service';
+import { FormsModule } from '@angular/forms';
+import { MeetingViewOwnerComponent } from '../meeting-view-owner/meeting-view-owner.component';
+import { MeetingViewPublicComponent } from '../meeting-view-public/meeting-view-public.component';
+import { JwtService } from '../jwt.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-meeting-view',
   standalone: true,
-  imports: [MatFormFieldModule, MatInputModule, MatDatepickerModule,CommonModule ,NgFor ,NgxMaterialTimepickerModule ],
+  imports: [MatFormFieldModule, MatInputModule, MatDatepickerModule,CommonModule ,NgFor,FormsModule ,MeetingViewOwnerComponent,MeetingViewPublicComponent],
   templateUrl: './meeting-view.component.html',
   styleUrl: './meeting-view.component.css'
 })
 
-
 export class MeetingViewComponent {
-  meetingTitle = "";
-  meetingDescription = "";
+  meetingID = '';
+  isMeetingOwner =false;
   isDataLoaded = false;
-  meetingID = "";
 
-  SelectedDateList :Array<{ date: string; times: Array<{ startTime: string; endTime: string, timeID : string,isAvailable:boolean }> }>= [];
-
-  constructor(public _route: ActivatedRoute){ 
-  }
-
-  public doStuff(){
-    console.log(this.SelectedDateList)
-  }
-
-  public updateAvailability(id :number, it : number){
-    this.SelectedDateList[id].times[it].isAvailable =  !this.SelectedDateList[id].times[it].isAvailable ;
-  }
-
+  constructor(public _route: ActivatedRoute, private jwtService :JwtService){   }
+  
   public async getMeetings(meetingID : string){
     let obj = {
       meetingID : meetingID
     }
     let path = "/meetings/"+meetingID;
     let resp = await RequestHandlerService.sendData(obj,"getMeeting",path)
+    let ownerId = resp.body.UserID;
 
-    this.SelectedDateList = resp.body.data.dateTimes;
-    this.meetingTitle = resp.body.data.title;
-    this.meetingDescription = resp.body.data.description;
-
+    let userId = RequestHandlerService.getUserId();
+    if(userId == ownerId){
+      console.log("logged in");
+      this.isMeetingOwner = true;
+    }
     this.isDataLoaded = true;
   }
 
@@ -56,4 +47,5 @@ export class MeetingViewComponent {
     });
     await this.getMeetings(this.meetingID);
   }
+
 } 

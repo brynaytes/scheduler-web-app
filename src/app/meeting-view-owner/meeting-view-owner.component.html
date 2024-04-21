@@ -1,0 +1,23 @@
+<div>
+    <span *ngIf="isDataLoaded">
+        <div>
+            <h4  name="meetingTitle">{{meetingTitle}}</h4>
+        </div>
+        <div>
+            <h4  name="meetingDescription">{{meetingDescription}}</h4>
+        </div>
+        <br>
+        <div class="" *ngFor="let date of SelectedDateList; index as id">
+            <div>
+                <a class="">{{date.date}}</a>
+                <div class="" *ngFor="let time of date.times; index as it">
+                        <p>{{time.startTime}} - {{time.endTime}}</p>
+                        <div class="" *ngFor="let user of time.availableUsers; index as it">
+                            <p>{{user}}</p>
+
+                        </div>
+                </div>
+            </div>
+        </div>
+    </span> 
+</div>
