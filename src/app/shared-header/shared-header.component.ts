@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { JwtService } from '../jwt.service';
 import { CommonModule } from '@angular/common';
 import { UserActionService } from '../services/user-action/user-action.service';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-shared-header',
@@ -15,6 +16,7 @@ import { UserActionService } from '../services/user-action/user-action.service';
 export class SharedHeaderComponent {
   
   public username  : string;
+  public logoutUrl : string;
 
   constructor(public userService : UserActionService ,private activatedRoute: ActivatedRoute, public http : HttpClient, private jwtService :JwtService, private router: Router ) {
 
@@ -24,7 +26,25 @@ export class SharedHeaderComponent {
         await this.runAuthFlow(value);
         this.router.navigate(['/']) //navigate to home and remove code from url
       }
+      if("access_token" in localStorage ){
+        let cognitoUrl = environment.cognitoUrl;
+        let clientID = this.jwtService.getClaim(localStorage.getItem("access_token")!,"client_id" )
+        let callBackUrl = window.location;
+        //this.logoutUrl = cognitoUrl + '/logout?client_id=' + clientID + "&logout_uri=" + callBackUrl;
+
+
+        let url = new URL(cognitoUrl+"/logout");
+        let params = new URLSearchParams(url.search);
+
+        //Add a second foo parameter.
+        params.append("client_id", clientID);
+        params.append("logout_uri", "http://"+callBackUrl.host+"/logout");
+
+        this.logoutUrl = url.toString()+"?"+params;
+      }
     });
+
+
   }
   async ngOnInit() {
 
@@ -46,6 +66,7 @@ export class SharedHeaderComponent {
         }
       }else{
         //no token, not logged in 
+        this.username = "";
         return await this.userService.beginAuth();
       }
 

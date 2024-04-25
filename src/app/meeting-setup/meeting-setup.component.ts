@@ -98,7 +98,7 @@ export class MeetingSetupComponent {
       width: '500px',
       height: '250px',
       data : {
-        url : 'http://localhost:4200/meetingView/'+meetingID
+        url : window.location+'/meetingView/'+meetingID
       }
     });
   }
