@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { JwtService } from '../jwt.service';
+import { JwtService } from '../services/jwt/jwt.service';
 
 @Component({
   selector: 'app-profile',

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {Router, ActivatedRoute, Params} from '@angular/router';
-import { JwtService } from '../../jwt.service';
+import { JwtService } from '../jwt/jwt.service';
 import { environment } from '../../../environments/environment';
 
 @Injectable({

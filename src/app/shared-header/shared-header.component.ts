@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterModule ,ActivatedRoute,Router, NavigationEnd} from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { JwtService } from '../jwt.service';
+import { JwtService } from '../services/jwt/jwt.service';
 import { CommonModule } from '@angular/common';
 import { UserActionService } from '../services/user-action/user-action.service';
 import { environment } from '../../environments/environment';

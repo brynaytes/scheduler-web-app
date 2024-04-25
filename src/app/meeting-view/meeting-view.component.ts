@@ -7,7 +7,7 @@ import { RequestHandlerService } from '../services/request-handler/request-handl
 import { FormsModule } from '@angular/forms';
 import { MeetingViewOwnerComponent } from '../meeting-view-owner/meeting-view-owner.component';
 import { MeetingViewPublicComponent } from '../meeting-view-public/meeting-view-public.component';
-import { JwtService } from '../jwt.service';
+import { JwtService } from '../services/jwt/jwt.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({

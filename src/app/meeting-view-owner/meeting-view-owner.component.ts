@@ -6,7 +6,7 @@ import { CommonModule ,NgFor} from '@angular/common';
 import { RequestHandlerService } from '../services/request-handler/request-handler.service';
 import { ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { JwtService } from '../jwt.service';
+import { JwtService } from '../services/jwt/jwt.service';
 
 @Component({
   selector: 'app-meeting-view-owner',
