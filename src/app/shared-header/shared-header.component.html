@@ -22,7 +22,7 @@
             <a class="nav-link  " *ngIf="!username" [routerLink]="['/login']">Login</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link  "  *ngIf="username" [routerLink]="['/logout']">Logout</a>
+            <a class="nav-link  "  *ngIf="username"  href={{logoutUrl}}>Logout</a>
           </li>
           <li class="nav-item">
             <a class="nav-link  "  *ngIf="username" [routerLink]="['/profile']">{{username}}</a>

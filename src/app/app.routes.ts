@@ -6,6 +6,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { MeetingSetupComponent } from './meeting-setup/meeting-setup.component';
 import { MeetingViewComponent } from './meeting-view/meeting-view.component';
 import { MyMeetingsComponent } from './my-meetings/my-meetings.component';
+import { LogoutComponent } from './logout/logout.component';
 
 const routeConfig: Routes = [
     {
@@ -42,6 +43,10 @@ const routeConfig: Routes = [
       path: 'profile',
       component: ProfileComponent,
       title: 'profile'
+    },    {
+      path: 'logout',
+      component: LogoutComponent,
+      title: 'logout'
     },
   ];
   

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import { JwtService } from '../../jwt.service';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'any',
@@ -12,7 +13,7 @@ export class RequestHandlerService {
   private code : string | undefined;
 
   constructor(private http: HttpClient, private activatedRoute: ActivatedRoute, private router: Router ) {}
-  public static url = 'https://pl3dulp1hj.execute-api.us-east-1.amazonaws.com/prod';
+  public static url = environment.apiUrl;
 
   static async sendData(obj :any = {}, action="", path ="", method = "POST") {
 
