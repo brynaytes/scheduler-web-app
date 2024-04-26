@@ -11,7 +11,7 @@ export class JwtService {
     this.jwtHelper = new JwtHelperService();
   }
 
-  public  decodeToken(token: string): any {
+  public decodeToken(token: string): any {
     return this.jwtHelper.decodeToken(token);
   }
 
@@ -19,6 +19,5 @@ export class JwtService {
     const decodedToken = this.decodeToken(token);
     return decodedToken ? decodedToken[claimKey] : null;
   }
-  
-  
+
 }

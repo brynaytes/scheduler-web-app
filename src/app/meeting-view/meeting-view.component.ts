@@ -1,4 +1,4 @@
-import { Component,Input  } from '@angular/core';
+import { Component  } from '@angular/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -7,7 +7,7 @@ import { RequestHandlerService } from '../services/request-handler/request-handl
 import { FormsModule } from '@angular/forms';
 import { MeetingViewOwnerComponent } from '../meeting-view-owner/meeting-view-owner.component';
 import { MeetingViewPublicComponent } from '../meeting-view-public/meeting-view-public.component';
-import { JwtService } from '../jwt.service';
+import { JwtService } from '../services/jwt/jwt.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({

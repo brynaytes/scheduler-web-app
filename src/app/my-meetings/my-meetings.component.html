@@ -1,16 +1,16 @@
 <p>my-meetings works!</p>
 
-<div >
-<table>
-    <tr>
-        <th>Title</th>
-        <th>Description</th>
-        <th>Go To</th>
-    </tr>
-    <tr class="" *ngFor="let meeting of meetings; index as id">
-        <td>{{meeting.title}}</td>
-        <td>{{meeting.description}}</td>
-        <td><a [routerLink]="['/meetingView',meeting.meetingID]">{{meeting.meetingID}}</a></td>
+<div>
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Go To</th>
+        </tr>
+        <tr class="" *ngFor="let meeting of meetings; index as id">
+            <td>{{meeting.title}}</td>
+            <td>{{meeting.description}}</td>
+            <td><a [routerLink]="['/meetingView',meeting.meetingID]">{{meeting.meetingID}}</a></td>
 
-    </tr>
-</table>
+        </tr>
+    </table>
