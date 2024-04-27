@@ -14,16 +14,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have the 'api-key-manager-angular' title`, () => {
+  it(`should have the 'schedule-madness-angular' title`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('api-key-manager-angular');
+    expect(app.title).toEqual('schedule-madness-angular');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, api-key-manager-angular');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, schedule-madness-angular');
   });
 });

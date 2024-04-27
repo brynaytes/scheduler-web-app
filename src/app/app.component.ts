@@ -15,5 +15,5 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'api-key-manager-angular';
+  title = 'schedule-madness-angular';
 }
