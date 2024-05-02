@@ -12,7 +12,7 @@ import { RouterModule, Router } from '@angular/router';
 })
 export class MyMeetingsComponent {
   isDataLoaded = false;
-  url: string = "http://localhost:4200/viewmeeting/";
+  url: string = window.location.origin+"/viewmeeting/";
   meetings: Array<{ title: string, description: string, meetingID: string }>;
 
   constructor(private router: Router) { }
