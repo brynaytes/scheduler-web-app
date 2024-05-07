@@ -89,7 +89,7 @@ export class MeetingSetupComponent {
       description :this.meetingDescription,
       dateTimes : this.SelectedDateList
     }
-    let response = await RequestHandlerService.sendData(obj,"createMeeting","/meetings/create","PUT");
+    let response = await RequestHandlerService.sendData(obj,"createMeeting","/meetings");
     this.openDialog(response.body.meetingID);
   }
 

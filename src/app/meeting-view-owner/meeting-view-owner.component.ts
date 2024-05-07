@@ -36,7 +36,7 @@ export class MeetingViewOwnerComponent {
     let obj = {
       meetingID: meetingID
     }
-    let path = "/meetings/" + meetingID;
+    let path = "/meetings";
     let resp = await RequestHandlerService.sendData(obj, "getMeetingAvailabilityList", path)
     let name = "";
 

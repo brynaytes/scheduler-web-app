@@ -62,6 +62,6 @@ export class MeetingViewPublicComponent {
       name: this.name,
       dateTimes: this.SelectedDateList
     }
-    let response = await RequestHandlerService.sendData(obj, "addTimes", "/meetings/create", "PUT");
+    let response = await RequestHandlerService.sendData(obj, "addTimes", "/meetings", "POST");
   }
 } 
