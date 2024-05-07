@@ -7,11 +7,12 @@ import { RequestHandlerService } from '../services/request-handler/request-handl
 import { ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { JwtService } from '../services/jwt/jwt.service';
+import { SpinnerComponent } from '../spinner/spinner.component';
 
 @Component({
   selector: 'app-meeting-view-owner',
   standalone: true,
-  imports: [MatFormFieldModule, MatInputModule, MatDatepickerModule, CommonModule, NgFor, FormsModule],
+  imports: [MatFormFieldModule, MatInputModule, MatDatepickerModule, CommonModule, NgFor, FormsModule,SpinnerComponent],
   templateUrl: './meeting-view-owner.component.html',
   styleUrl: './meeting-view-owner.component.css'
 })
