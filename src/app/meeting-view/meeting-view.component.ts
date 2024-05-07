@@ -29,7 +29,7 @@ export class MeetingViewComponent {
     let obj = {
       meetingID : meetingID
     }
-    let path = "/meetings/"+meetingID;
+    let path = "/meetings";
     let resp = await RequestHandlerService.sendData(obj,"getMeeting",path)
     let ownerId = resp.body.UserID;
 

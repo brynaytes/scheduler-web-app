@@ -15,12 +15,13 @@ import {
   MatDialogContent,
 } from '@angular/material/dialog';
 import { MeetingConfirmationDialogComponent } from '../meeting-confirmation-dialog/meeting-confirmation-dialog.component';
+import { SpinnerComponent } from '../spinner/spinner.component';
 
 
 @Component({
   selector: 'app-meeting-setup',
   standalone: true,
-  imports: [MatFormFieldModule, MatInputModule, MatDatepickerModule,CommonModule ,NgFor ,NgxMaterialTimepickerModule,FormsModule, MatDialogActions, MatDialogClose, MatDialogTitle, MatDialogContent ],
+  imports: [MatFormFieldModule, MatInputModule, MatDatepickerModule,CommonModule ,NgFor ,NgxMaterialTimepickerModule,FormsModule, MatDialogActions, MatDialogClose, MatDialogTitle, MatDialogContent,SpinnerComponent ],
   templateUrl: './meeting-setup.component.html',
   styleUrl: './meeting-setup.component.css',
   providers: [provideNativeDateAdapter()],
@@ -30,6 +31,7 @@ export class MeetingSetupComponent {
   SelectedDateList :Array<{ date: string; times: Array<{ startTime: string; endTime: string }> }>= [];
   @Input() meetingDescription: string;
   @Input() meetingTitle: string;
+  isloading = false;
 
   constructor(public dialog: MatDialog) {}
 
@@ -84,12 +86,14 @@ export class MeetingSetupComponent {
   }
 
   public async createMeeting(){
+    this.isloading = true;
     let obj = {
       title : this.meetingTitle,
       description :this.meetingDescription,
       dateTimes : this.SelectedDateList
     }
-    let response = await RequestHandlerService.sendData(obj,"createMeeting","/meetings/create","PUT");
+    let response = await RequestHandlerService.sendData(obj,"createMeeting","/meetings");
+    this.isloading = false;
     this.openDialog(response.body.meetingID);
   }
 
