@@ -1,30 +1,28 @@
-<p>profile works!</p>
 <div>
-    <form>
         <div>
             <label for="profile-username">username</label>
-            <input type="text" id="profile-username" name="profile-username" value="{{username}}" disabled="true">
+            <input type="text" id="profile-username" name="profile-username" value="" [(ngModel)]="username" disabled="true">
         </div>
         <div>
             <label for="profile-first-name">first name</label>
-            <input type="text" id="profile-first-name" name="profile-first-name" value="{{firstName}}" >
+            <input type="text" id="profile-first-name" name="profile-first-name" value="" [(ngModel)]="firstName">
         </div>
         <div>
             <label for="profile-last-name">last name</label>
-            <input type="text" id="profile-last-name" name="profile-last-name" value="{{lastName}}" >
+            <input type="text" id="profile-last-name" name="profile-last-name"  value="" [(ngModel)]="lastName" >
         </div>
         <div>
             <label for="profile-address">address</label>
-            <input type="text" id="profile-address" name="profile-address" value="{{address}}" >
+            <input type="text" id="profile-address" name="profile-address"  value="" [(ngModel)]="address" >
         </div>
         <div>
             <label for="profile-email">email</label>
-            <input type="text" id="profile-email" name="profile-email" value="{{email}}" >
+            <input type="text" id="profile-email" name="profile-email"  value="" [(ngModel)]="email">
         </div>
         <div>
             <label for="profile-phone">phone</label>
-            <input type="text" id="profile-phone" name="profile-phone" value="{{phone}}" >
+            <input type="text" id="profile-phone" name="profile-phone"  value="" [(ngModel)]="phone" >
         </div>
-        <input type="submit" value="Submit">
-    </form>
+        <input type="submit" value="Submit" (click)="Submit()">
 </div>
+<app-spinner *ngIf="isloading" class="center-screen"></app-spinner>

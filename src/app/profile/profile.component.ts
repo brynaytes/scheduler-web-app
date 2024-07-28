@@ -1,10 +1,15 @@
 import { Component } from '@angular/core';
 import { JwtService } from '../services/jwt/jwt.service';
+import { FormsModule } from '@angular/forms';
+import { SpinnerComponent } from '../spinner/spinner.component';
+import { RequestHandlerService } from '../services/request-handler/request-handler.service';
+import { NgIf } from '@angular/common';
+
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [],
+  imports: [FormsModule,SpinnerComponent, NgIf],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })
@@ -15,8 +20,11 @@ export class ProfileComponent {
   public address: string;
   public email: string;
   public phone: string;
+  public isloading: boolean = false;
 
-  constructor(private jwtService: JwtService) { }
+
+  constructor(private jwtService: JwtService  ) { }
+
 
   async ngOnInit() {
     this.username = this.jwtService.getClaim(localStorage.getItem("access_token")!, "username");
@@ -25,5 +33,39 @@ export class ProfileComponent {
     this.address = this.jwtService.getClaim(localStorage.getItem("id_token")!, "address").formatted;
     this.email = this.jwtService.getClaim(localStorage.getItem("id_token")!, "email");
     this.phone = this.jwtService.getClaim(localStorage.getItem("id_token")!, "phone_number");
+  }
+  async Submit(){
+    this.isloading = true;
+
+    let obj = {
+      UserAttributes : [
+        { 
+          Name: "name",
+          Value: this.firstName + " " + this.lastName,
+        },
+        { 
+          Name: "address",
+          Value: this.address,
+        },        
+        { 
+          Name: "email",
+          Value: this.email,
+        },
+        { 
+          Name: "phone_number",
+          Value: this.phone,
+        },
+        //this will cause the user email to be un-verified and is required to be sent when email is updated.
+       /* {
+          Name: "email_verified", 
+          Value: "false"
+        }*/
+    
+      ],
+      AccessToken :  localStorage.getItem('access_token')
+    }
+    console.log(obj);
+    let response = await RequestHandlerService.sendData(obj,"profile_update","/user");
+    this.isloading = false;
   }
 }
