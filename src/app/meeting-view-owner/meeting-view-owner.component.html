@@ -7,10 +7,14 @@
             <h4  name="meetingDescription">{{meetingDescription}}</h4>
         </div>
         <br>
-        <div class="" *ngFor="let date of SelectedDateList; index as id">
-            <div>
-                <a class="">{{date.date}}</a>
-                <div class="" *ngFor="let time of date.times; index as it">
+        <div  class="accordion"  id="accordionExample" *ngFor="let date of SelectedDateList; index as id">
+            <div  class="accordion-item">
+                <h3  class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        {{date.date}}
+                    </button>
+                </h3>
+                <div id="collapseOne" data-bs-parent="#accordionExample" class="accordion-collapse collapse " *ngFor="let time of date.times; index as it">
                         <p>{{time.startTime}} - {{time.endTime}}</p>
                         <div class="" *ngFor="let user of time.availableUsers; index as it">
                             <p>{{user}}</p>

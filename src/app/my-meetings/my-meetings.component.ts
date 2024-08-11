@@ -28,4 +28,8 @@ export class MyMeetingsComponent {
     await this.setupTable();
   }
 
+  copyToClipboard(meetingID : string){
+    let url = window.location.hostname+'/meetingView/'+meetingID;
+    navigator.clipboard.writeText(url);
+  }
 }
