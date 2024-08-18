@@ -1,0 +1,26 @@
+.expansion {
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.topPick {
+    background-color: #ffd800 !important;
+}
+.topPick:hover {
+    background-color: GoldenRod  !important;
+}
+.topPickBody{
+    background-color: LightYellow !important;
+}
+.availableUsersBox{
+    padding : 30px;
+}
+
+.meetingInfo{
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+}
+

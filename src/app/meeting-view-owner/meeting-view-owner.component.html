@@ -1,27 +1,31 @@
 <div>
     <span *ngIf="isDataLoaded">
-        <div>
-            <h4  name="meetingTitle">{{meetingTitle}}</h4>
-        </div>
-        <div>
-            <h4  name="meetingDescription">{{meetingDescription}}</h4>
+        <div class="meetingInfo">
+                <h2  name="meetingTitle">{{meetingTitle}}</h2>
+
+                <p  name="meetingDescription">{{meetingDescription}}</p>
         </div>
         <br>
-        <div  class="accordion"  id="accordionExample" *ngFor="let date of SelectedDateList; index as id">
-            <div  class="accordion-item">
-                <h3  class="accordion-header">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                        {{date.date}}
-                    </button>
-                </h3>
-                <div id="collapseOne" data-bs-parent="#accordionExample" class="accordion-collapse collapse " *ngFor="let time of date.times; index as it">
-                        <p>{{time.startTime}} - {{time.endTime}}</p>
-                        <div class="" *ngFor="let user of time.availableUsers; index as it">
-                            <p>{{user}}</p>
 
-                        </div>
+        <div  *ngFor="let date of SelectedDateList; index as id">
+                <div   class="expansion" *ngFor="let time of date.times; index as it" >
+                    <mat-expansion-panel [expanded]="time.topPick" [ngClass] = "{'topPickBody' : time.topPick}">
+                        <mat-expansion-panel-header [ngClass] = "{'topPick' : time.topPick}">
+                            <mat-panel-title>
+                                {{date.date}}<br>{{time.startTime}} - {{time.endTime}}
+                            </mat-panel-title>
+                            <mat-panel-description>
+                                <b>{{time.len}} available </b>  <span *ngIf="time.topPick"> - best time</span>
+                            </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <span class="availableUsersBox">
+                            <div  *ngFor="let user of time.availableUsers; index as it">
+                                <p>{{user}}</p>
+
+                            </div>
+                        </span>
+                    </mat-expansion-panel>
                 </div>
-            </div>
         </div>
     </span> 
 </div>
