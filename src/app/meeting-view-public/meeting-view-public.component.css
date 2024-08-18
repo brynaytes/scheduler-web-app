@@ -1,0 +1,21 @@
+.dates{
+    margin : 20px;
+    font-size: 20px;
+}
+
+.times{
+    margin-left:  20px;
+    font-size: 15px;
+}
+.availabilityCheckbox{
+    margin-right  : 5px;
+}
+
+.meetingInfo{
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+}
+
