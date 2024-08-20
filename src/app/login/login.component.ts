@@ -6,8 +6,15 @@ import { environment } from '../../environments/environment';
   standalone: true,
   imports: [],
   template: `
-
-    <a href="{{cognitoUrl}}/oauth2/authorize?client_id=4m9eg4mrjosm9d17clp9iqpdhu&response_type=code&scope=openid+test-resource-server%2Ftest+aws.cognito.signin.user.admin+email+phone+profile&redirect_uri={{url}}">go </a>
+    <div class="container">
+    <div>
+    <a class="login" href="{{cognitoUrl}}/oauth2/authorize?client_id=4m9eg4mrjosm9d17clp9iqpdhu&response_type=code&scope=openid+test-resource-server%2Ftest+aws.cognito.signin.user.admin+email+phone+profile&redirect_uri={{url}}">login </a>
+    </div>
+    <p>or</p>
+    <div>
+    <a class="signup" href="{{cognitoUrl}}/signup?client_id=4m9eg4mrjosm9d17clp9iqpdhu&response_type=code&scope=openid+test-resource-server%2Ftest+aws.cognito.signin.user.admin+email+phone+profile&redirect_uri={{url}}">signup </a>
+    </div>
+    </div>
 
   `,
   styleUrl: './login.component.css'
