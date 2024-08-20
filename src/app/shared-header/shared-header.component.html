@@ -5,25 +5,25 @@
           <a href="/" class="">Schedule Maddness</a>
         </li>
         <li class="">
-          <a [routerLink]="['/']" class="" aria-current="page">Home</a>
-        </li>
-        <li class="">
-          <a [routerLink]="['/about']" class="">About</a>
-        </li>
-        <li class="">
-          <a [routerLink]="['/meetingSetup']" *ngIf="username" class="">Create Meeting</a>
-        </li>
-        <li class="">
-          <a [routerLink]="['/myMeetings']" class="" *ngIf="username" >meetings</a>
-        </li>
-        <li class="">
-          <a  [routerLink]="['/login']" class="" *ngIf="!username">Login</a>
+          <a [routerLink]="['/profile']" class="" *ngIf="username" >{{username}}</a>
         </li>
         <li class="">
           <a href={{logoutUrl}} class="" *ngIf="username" >Logout</a>
         </li>
         <li class="">
-          <a [routerLink]="['/profile']" class="" *ngIf="username" >{{username}}</a>
+          <a  [routerLink]="['/login']" class="" *ngIf="!username">Login</a>
+        </li>
+        <li class="">
+          <a [routerLink]="['/myMeetings']" class="" *ngIf="username" >meetings</a>
+        </li>
+        <li class="">
+          <a [routerLink]="['/meetingSetup']" *ngIf="username" class="">Create Meeting</a>
+        </li>
+        <li class="">
+          <a [routerLink]="['/about']" class="">About</a>
+        </li>
+        <li class="">
+          <a [routerLink]="['/']" class="" aria-current="page">Home</a>
         </li>
       </ul>
     </div>

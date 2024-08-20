@@ -36,15 +36,12 @@ export class SharedHeaderComponent {
         let url = new URL(cognitoUrl + "/logout");
         let params = new URLSearchParams(url.search);
 
-        //Add a second foo parameter.
         params.append("client_id", clientID);
         params.append("logout_uri", "http://" + callBackUrl.host + "/logout");
 
         this.logoutUrl = url.toString() + "?" + params;
       }
     });
-
-
   }
   async ngOnInit() {
 

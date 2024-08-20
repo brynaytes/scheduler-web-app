@@ -6,9 +6,7 @@ import { environment } from '../../environments/environment';
   standalone: true,
   imports: [],
   template: `
-    <p>
-      login works!
-    </p>
+
     <a href="{{cognitoUrl}}/oauth2/authorize?client_id=4m9eg4mrjosm9d17clp9iqpdhu&response_type=code&scope=openid+test-resource-server%2Ftest+aws.cognito.signin.user.admin+email+phone+profile&redirect_uri={{url}}">go </a>
 
   `,
