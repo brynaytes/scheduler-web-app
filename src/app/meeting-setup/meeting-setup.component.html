@@ -1,35 +1,41 @@
+<div class="center">
+    <div class="mb-3 row" > 
+        <label for="meetingTitle" class="col-sm-3 col-form-label">title</label>
+        <input type="text" id="meetingTitle" name="meetingTitle" value="" [(ngModel)]="meetingTitle"  class="col-sm-5" > 
+    </div>
+    <div class="mb-3 row">
+        <label for="meetingDescription" class="col-sm-3 col-form-label">description</label>
+        <input type="text" id="meetingDescription" name="meetingDescription" value="" [(ngModel)]="meetingDescription"  class="col-sm-5">
+    </div>
+    <label for="datePicker">Add a Date</label>
 
-<div>
-        <div>
-            <label for="meetingTitle">title</label>
-            <input type="text" id="meetingTitle" name="meetingTitle" value="" [(ngModel)]="meetingTitle">
-        </div>
-        <div>
-            <label for="meetingDescription">description</label>
-            <input type="text" id="meetingDescription" name="meetingDescription" value="" [(ngModel)]="meetingDescription">
-        </div>
-        <label for="datePicker">Add a Date</label>
+    <mat-datepicker-toggle id="datePicker" matIconSuffix [for]="picker"></mat-datepicker-toggle>
 
-        <mat-datepicker-toggle id="datePicker" matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <input matInput [matDatepicker]="picker" placeholder="Choose a date" (dateChange)="dateUpdate($event)"
+        style="visibility: hidden !important;">
 
-        <input matInput [matDatepicker]="picker" placeholder="Choose a date" (dateChange)="dateUpdate($event)" style="visibility: hidden !important;">
-        
-        <mat-datepicker #picker></mat-datepicker>
-        <br><br>
-        <div class="" *ngFor="let date of SelectedDateList; index as id">
-            <div>
+    <mat-datepicker #picker></mat-datepicker>
+    <br><br>
+    <div class="" *ngFor="let date of SelectedDateList; index as id">
+        <div class="dates">
+            <div class="dateDisplay">
                 <a class="">{{date.date}}</a>
-                <input type="button" value="X" (click)="removeItem(id)"/>
-                <input type="button" value="add a time +" (click)="addTime(id)"/>
-                <div class="" *ngFor="let time of date.times; index as it">
-                        <ngx-timepicker-field [defaultTime]="'11:11 am'" [controlOnly]="true"    (timeChanged)="addStartTime($event,id,it)"/>
-                        <ngx-timepicker-field [defaultTime]="'11:12 am'" [controlOnly]="true" (timeChanged)="addEndTime($event,id,it)"/>
-                        <input type="button" value="X" (click)="removeTime(id,it)"/>
-                </div>
+                <input type="button" value="X" (click)="removeItem(id)" />
+                <input type="button" value="add a time +" (click)="addTime(id)" />
+            </div>
+            <div class="timesBlock" *ngFor="let time of date.times; index as it">
+                <input class="timeList" type="button" value="X" (click)="removeTime(id,it)" />
+                <ngx-timepicker-field class="timeList" [defaultTime]="'11:11 am'" [controlOnly]="true"
+                    (timeChanged)="addStartTime($event,id,it)" />
+                 - 
+                <ngx-timepicker-field  class="timeList" [defaultTime]="'11:12 am'" [controlOnly]="true"
+                    (timeChanged)="addEndTime($event,id,it)" />
+                
             </div>
         </div>
-        <br>
-        <input type="submit" value="Create meeting" (click)="createMeeting()">
+    </div>
+    <br>
+    <input type="submit" value="Create meeting" (click)="createMeeting()">
 
 </div>
 <app-spinner *ngIf="isloading" class="center-screen"></app-spinner>
