@@ -5,9 +5,10 @@
 
 .center{
     margin: auto;
-    width: 500px;
     padding-top: 50px;
     text-align: center;
+    width : 50%;
+
 }
 
 .dates{
@@ -24,6 +25,15 @@
     padding-top : 20px;
 }
 .dateDisplay{
-    float:left;
-    width:100%;
+    float:right;
+    width:130%;
+}
+.ngx-timepicker-control__arrows{
+    color : red;
+}
+.timeSelector{
+    width: 100px;
+}
+.error{
+    background-color: lightcoral;
 }

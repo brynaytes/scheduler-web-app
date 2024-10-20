@@ -19,23 +19,25 @@
     <div class="" *ngFor="let date of SelectedDateList; index as id">
         <div class="dates">
             <div class="dateDisplay">
-                <a class="">{{date.date}}</a>
                 <input type="button" value="X" (click)="removeItem(id)" />
-                <input type="button" value="add a time +" (click)="addTime(id)" />
+                <a class="">{{date.date}}</a>
+                <input type="button" value="add time +" (click)="addTime(id)" />
             </div>
-            <div class="timesBlock" *ngFor="let time of date.times; index as it">
-                <input class="timeList" type="button" value="X" (click)="removeTime(id,it)" />
-                <ngx-timepicker-field class="timeList" [defaultTime]="'11:11 am'" [controlOnly]="true"
-                    (timeChanged)="addStartTime($event,id,it)" />
-                 - 
-                <ngx-timepicker-field  class="timeList" [defaultTime]="'11:12 am'" [controlOnly]="true"
-                    (timeChanged)="addEndTime($event,id,it)" />
-                
+            <div class="timesBlock" *ngFor="let time of date.times; index as it" >
+                <div  [ngClass] = "{'error' : time.error}">
+                    <input class="timeList" type="button" value="X" (click)="removeTime(id,it)" />
+                    <input placeholder="Start Time" aria-label="Start Time" [ngxTimepicker]="startTime" readonly class="timeSelector">
+                    <ngx-material-timepicker #startTime  (timeChanged)="addStartTime($event,id,it)"></ngx-material-timepicker>
+                    -
+                    <input placeholder="End Time" aria-label="End Time" [ngxTimepicker]="endTime" readonly class="timeSelector">
+                    <ngx-material-timepicker #endTime (timeChanged)="addEndTime($event,id,it)" ></ngx-material-timepicker>
+                    <p *ngIf="time.error" style="color:red">Start time is after End time.</p>
+                </div>
             </div>
         </div>
     </div>
     <br>
-    <input type="submit" value="Create meeting" (click)="createMeeting()">
+    <input type="submit" value="Create meeting" (click)="createMeeting()" [disabled]="meetingDisabled" >
 
 </div>
 <app-spinner *ngIf="isloading" class="center-screen"></app-spinner>
