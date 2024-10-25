@@ -47,7 +47,7 @@ export class MeetingViewOwnerComponent {
 
 
 
-    this.SelectedDateList = resp.body.dateTimes;
+    this.SelectedDateList = resp.dateTimes;
     
    //let largest_meeting : Array<{items :Array<{number : number}>}>= [];
    let largest_meeting :any = [];
@@ -75,10 +75,10 @@ export class MeetingViewOwnerComponent {
       });
     }
 
-    this.meetingTitle = resp.body.title;
-    this.meetingDescription = resp.body.description;
+    this.meetingTitle = resp.title;
+    this.meetingDescription = resp.description;
 
-    let ownerId = resp.body.UserID;
+    let ownerId = resp.UserID;
 
     let userId = RequestHandlerService.getUserId();
     if (userId == ownerId) {

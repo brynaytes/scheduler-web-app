@@ -43,12 +43,12 @@ export class MeetingViewPublicComponent {
     let obj = {
       meetingID: meetingID
     }
-    let path = "/meetings/" + meetingID;
+    let path = "/meetings";
     let resp = await RequestHandlerService.sendData(obj, "getMeeting", path)
 
-    this.SelectedDateList = resp.body.data.dateTimes;
-    this.meetingTitle = resp.body.data.title;
-    this.meetingDescription = resp.body.data.description;
+    this.SelectedDateList = resp.data.dateTimes;
+    this.meetingTitle = resp.data.title;
+    this.meetingDescription = resp.data.description;
     this.isDataLoaded = true;
   }
 

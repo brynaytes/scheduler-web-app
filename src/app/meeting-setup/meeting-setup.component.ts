@@ -142,11 +142,11 @@ export class MeetingSetupComponent {
     let response = await RequestHandlerService.sendData(obj,"createMeeting","/meetings");
     this.isloading = false;
 
-    if(response.body == "error")
+    if(response == "error")
     {
       this.openErrorDialog("An Error Has Occurred" , "Oops, something happened that we didnt expect! If this continues to happen please contact support.");
     }else{
-      this.openDialog(response.body.meetingID);
+      this.openDialog(response.meetingID);
     }
   }
 

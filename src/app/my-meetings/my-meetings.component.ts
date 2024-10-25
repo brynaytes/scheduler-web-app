@@ -19,7 +19,7 @@ export class MyMeetingsComponent {
   constructor(private router: Router) { }
   public async setupTable() {
     let meetingsRequest = await RequestHandlerService.sendData({}, "getMeetingList", "/meetings");
-    this.meetings = meetingsRequest.body;
+    this.meetings = meetingsRequest;
     this.isDataLoaded = true;
   }
 

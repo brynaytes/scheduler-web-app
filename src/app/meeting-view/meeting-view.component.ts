@@ -31,7 +31,7 @@ export class MeetingViewComponent {
     }
     let path = "/meetings";
     let resp = await RequestHandlerService.sendData(obj,"getMeeting",path)
-    let ownerId = resp.body.UserID;
+    let ownerId = resp.UserID;
 
     let userId = RequestHandlerService.getUserId();
     if(userId == ownerId){
