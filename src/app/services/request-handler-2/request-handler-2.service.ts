@@ -29,7 +29,7 @@ export class RequestHandler2Service {
       'Content-Type': 'application/json', 
       'Access-Control-Allow-Origin': '*',
        'Authorization' : token,
-       'Mode' : corsMode
+       //'Mode' : corsMode
 
     });
     let response : any;

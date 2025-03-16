@@ -1,4 +1,4 @@
-import { Component, Input  } from '@angular/core';
+import { Component, inject, Input  } from '@angular/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -29,6 +29,8 @@ import { GenericDialogComponent } from '../generic-dialog/generic-dialog.compone
 })
 
 export class MeetingSetupComponent {
+  private dataService = inject(RequestHandlerService)
+  
   SelectedDateList :Array<{ date: string; times: Array<{ startTime: string ; endTime: string; error: boolean }> }>= [];
   @Input() meetingDescription: string;
   @Input() meetingTitle: string;
@@ -139,7 +141,7 @@ export class MeetingSetupComponent {
       description :this.meetingDescription,
       dateTimes : this.SelectedDateList
     }
-    let response = await RequestHandlerService.sendData(obj,"createMeeting","/meetings");
+    let response = await this.dataService.sendData(obj,"createMeeting","/meetings");
     this.isloading = false;
 
     if(response == "error")

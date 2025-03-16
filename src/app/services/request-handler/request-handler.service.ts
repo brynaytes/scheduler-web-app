@@ -1,6 +1,5 @@
 import { Inject, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Router, ActivatedRoute, Params } from '@angular/router';
 import { JwtService } from '../jwt/jwt.service';
 import { environment } from '../../../environments/environment.current';
 
@@ -10,22 +9,11 @@ import { environment } from '../../../environments/environment.current';
 
 export class RequestHandlerService {
 
-  private code: string | undefined;
 
-  constructor( public http: HttpClient) { }
-  public static url = environment.apiUrl;
+  constructor(public http: HttpClient) {}
+  public url = environment.apiUrl;
 
-  static async sendData(obj: any = {}, action = "", path = "", method = "POST") {
-    const instance = new RequestHandlerService(Inject(HttpClient));
-    let response : any ;
-    response = await instance.nonStaticsendData(obj,action,  this.url + '/' + path, method);
-    return response;
-    
-  }
-
-
-
-  private async nonStaticsendData(obj: any = {}, action = "", url = "" , method = "POST"){
+  async sendData(obj: any = {}, action = "", path = "", method = "POST") {
     let corsMode: RequestMode = environment.environment == "local" ? "no-cors" : "cors";
     let token = localStorage.getItem('access_token')
     token = token ? token : "";
@@ -36,22 +24,22 @@ export class RequestHandlerService {
           "data": obj
         };
 
-    let headers = new HttpHeaders();
-    headers= headers.set('content-type', 'application/json');
-    headers= headers.set('authentication', token);
-    headers= headers.set('Access-Control-Allow-Origin', '*');
-    headers= headers.set('Mode', corsMode);
-    let response : any ;
-    response =  this.http.post(url, data, {headers : headers}).subscribe(res => {
-      response = res
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json', 
+      'Access-Control-Allow-Origin': '*',
+      'Authorization' : token
     });
+    let response : any;
+     
+    response = await this.http.post(this.url  + path, data, {headers : headers}).toPromise();
     return response;
   }
 
-  public static getUserId() {
-    let jwtService = new JwtService();
-    let token = localStorage.getItem('id_token')
-    token = token ? token : "";
-    return jwtService.getClaim(token, "sub")
-  }
+    public static getUserId() {
+      let jwtService = new JwtService();
+      let token = localStorage.getItem('id_token')
+      token = token ? token : "";
+      return jwtService.getClaim(token, "sub")
+    }
+  
 }

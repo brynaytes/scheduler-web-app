@@ -13,7 +13,7 @@ import { RequestHandler2Service } from '../services/request-handler-2/request-ha
   styleUrl: './my-meetings.component.css'
 })
 export class MyMeetingsComponent {
-  private dataService = inject(RequestHandler2Service)
+  private dataService = inject(RequestHandlerService)
   isDataLoaded = false;
   url: string = window.location.origin+"/viewmeeting/";
   meetings: Array<{ title: string, description: string, meetingID: string }>;

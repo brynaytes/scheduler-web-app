@@ -1,4 +1,4 @@
-import { Component, Input, ViewEncapsulation } from '@angular/core';
+import { Component, inject, Input, ViewEncapsulation } from '@angular/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -19,6 +19,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
   encapsulation : ViewEncapsulation.None
 })
 export class MeetingViewOwnerComponent {
+  private dataService = inject(RequestHandlerService)
+  
   meetingTitle = "";
   meetingDescription = "";
   isDataLoaded = false;
@@ -36,11 +38,12 @@ export class MeetingViewOwnerComponent {
   }
 
   public async getMeetings(meetingID: string) {
+    
     let obj = {
       meetingID: meetingID
     }
     let path = "/meetings";
-    let resp = await RequestHandlerService.sendData(obj, "getMeetingAvailabilityList", path)
+    let resp = await this.dataService.sendData(obj, "getMeetingAvailabilityList", path)
     let name = "";
 
 

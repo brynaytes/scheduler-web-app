@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -19,6 +19,8 @@ import { GenericDialogComponent } from '../generic-dialog/generic-dialog.compone
   styleUrl: './meeting-view-public.component.css'
 })
 export class MeetingViewPublicComponent {
+  private dataService = inject(RequestHandlerService)
+  
   meetingTitle = "";
   meetingDescription = "";
   isDataLoaded = false;
@@ -44,7 +46,7 @@ export class MeetingViewPublicComponent {
       meetingID: meetingID
     }
     let path = "/meetings";
-    let resp = await RequestHandlerService.sendData(obj, "getMeeting", path)
+    let resp = await this.dataService.sendData(obj, "getMeeting", path)
 
     this.SelectedDateList = resp.data.dateTimes;
     this.meetingTitle = resp.data.title;
@@ -65,7 +67,7 @@ export class MeetingViewPublicComponent {
       name: this.name,
       dateTimes: this.SelectedDateList
     }
-    let response = await RequestHandlerService.sendData(obj, "addTimes", "/meetings", "POST");
+    let response = await this.dataService.sendData(obj, "addTimes", "/meetings", "POST");
   
     if(response){
       this.openDialog("Time Successfully Added","")

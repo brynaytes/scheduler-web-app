@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { JwtService } from '../services/jwt/jwt.service';
 import { FormsModule } from '@angular/forms';
 import { SpinnerComponent } from '../spinner/spinner.component';
@@ -22,6 +22,7 @@ export class ProfileComponent {
   public phone: string;
   public isloading: boolean = false;
 
+  private dataService = inject(RequestHandlerService)
 
   constructor(private jwtService: JwtService  ) { }
 
@@ -65,7 +66,7 @@ export class ProfileComponent {
       AccessToken :  localStorage.getItem('access_token')
     }
     console.log(obj);
-    let response = await RequestHandlerService.sendData(obj,"profile_update","/user");
+    let response = await this.dataService.sendData(obj,"profile_update","/user");
     this.isloading = false;
   }
 }
