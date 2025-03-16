@@ -1,34 +1,30 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Schedule Maddness</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a [routerLink]="['/']" class="nav-link active" aria-current="page">Home</a>
+<nav >
+    <div class="" id="navbarNav">
+      <ul class="">
+        <li class="logo">
+          <a href="/" class="">Schedule Maddness</a>
         </li>
-        <li class="nav-item">
-          <a [routerLink]="['/about']" class="nav-link">About</a>
+        <li class="">
+          <a [routerLink]="['/profile']" class="" *ngIf="username" >{{username}}</a>
         </li>
-        <li class="nav-item">
-          <a [routerLink]="['/meetingSetup']" *ngIf="username" class="nav-link">Create Meeting</a>
+        <li class="">
+          <a href={{logoutUrl}} class="" *ngIf="username" >Logout</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link  " *ngIf="username" [routerLink]="['/myMeetings']">meetings</a>
+        <li class="">
+          <a  [routerLink]="['/login']" class="" *ngIf="!username">Login</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link  " *ngIf="!username" [routerLink]="['/login']">Login</a>
+        <li class="">
+          <a [routerLink]="['/myMeetings']" class="" *ngIf="username" >meetings</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link  " *ngIf="username" href={{logoutUrl}}>Logout</a>
+        <li class="">
+          <a [routerLink]="['/meetingSetup']" *ngIf="username" class="">Create Meeting</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link  " *ngIf="username" [routerLink]="['/profile']">{{username}}</a>
+        <li class="">
+          <a [routerLink]="['/about']" class="">About</a>
+        </li>
+        <li class="">
+          <a [routerLink]="['/']" class="" aria-current="page">Home</a>
         </li>
       </ul>
     </div>
-  </div>
 </nav>

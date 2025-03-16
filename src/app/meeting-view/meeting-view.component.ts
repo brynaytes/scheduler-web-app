@@ -1,4 +1,4 @@
-import { Component  } from '@angular/core';
+import { Component, inject  } from '@angular/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -22,6 +22,8 @@ export class MeetingViewComponent {
   meetingID = '';
   isMeetingOwner =false;
   isDataLoaded = false;
+  
+  private dataService = inject(RequestHandlerService)
 
   constructor(public _route: ActivatedRoute, private jwtService :JwtService){   }
   
@@ -30,8 +32,8 @@ export class MeetingViewComponent {
       meetingID : meetingID
     }
     let path = "/meetings";
-    let resp = await RequestHandlerService.sendData(obj,"getMeeting",path)
-    let ownerId = resp.body.UserID;
+    let resp = await this.dataService.sendData(obj,"getMeeting",path)
+    let ownerId = resp.UserID;
 
     let userId = RequestHandlerService.getUserId();
     if(userId == ownerId){

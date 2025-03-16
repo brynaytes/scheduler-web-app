@@ -1,26 +1,27 @@
 <div>
     <span *ngIf="isDataLoaded">
-        <div>
-            <h4  name="meetingTitle">{{meetingTitle}}</h4>
-        </div>
-        <div>
-            <h4  name="meetingDescription">{{meetingDescription}}</h4>
-        </div>
-        <label for="name">name : </label>
-        <input type="text" id="name" name="name" value="" [(ngModel)]="name">
-        <br><br>
-        <div class="" *ngFor="let date of SelectedDateList; index as id">
+        <div class="meetingInfo">
             <div>
-                <a class="">{{date.date}}</a>
-                <div class="" *ngFor="let time of date.times; index as it">
-                        <p>{{time.startTime}} - {{time.endTime}}</p>
-                        <label for="available-checkbox">available</label>
-                        <input type="checkbox" id="available-checkbox" name="available-checkbox" value={{time.isAvailable}}  (click)="updateAvailability(id,it)"> 
+                <h2  name="meetingTitle">{{meetingTitle}}</h2>
+
+                <p  name="meetingDescription">{{meetingDescription}}</p>
+            </div>
+            <label for="name">Your name : </label>
+            <input type="text" id="name" name="name" value="" [(ngModel)]="name">
+            <br><br>
+            <div class="" *ngFor="let date of SelectedDateList; index as id">
+                <div class="dates">
+                    <a class="">{{date.date}}</a>
+                    <div class="times" *ngFor="let time of date.times; index as it">
+                            <input type="checkbox" id="available-checkbox"  class="availabilityCheckbox"name="available-checkbox" value={{time.isAvailable}}  (click)="updateAvailability(id,it)"> 
+                            <label for="available-checkbox">{{time.startTime}} - {{time.endTime}}</label>
+
+                    </div>
                 </div>
             </div>
+            <br>
+            <input type="submit" value="Save Availability" (click)="createTimeRecord()">
         </div>
-        <br>
-        <input type="submit" value="Save time" (click)="createTimeRecord()">
     </span> 
 </div>
 <app-spinner *ngIf="!isDataLoaded" class="center-screen"></app-spinner>

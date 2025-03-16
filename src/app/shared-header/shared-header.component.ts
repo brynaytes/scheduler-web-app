@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { JwtService } from '../services/jwt/jwt.service';
 import { CommonModule } from '@angular/common';
 import { UserActionService } from '../services/user-action/user-action.service';
-import { environment } from '../../environments/environment';
+import { environment } from '../../environments/environment.current';
 
 @Component({
   selector: 'app-shared-header',
@@ -36,15 +36,12 @@ export class SharedHeaderComponent {
         let url = new URL(cognitoUrl + "/logout");
         let params = new URLSearchParams(url.search);
 
-        //Add a second foo parameter.
         params.append("client_id", clientID);
         params.append("logout_uri", "http://" + callBackUrl.host + "/logout");
 
         this.logoutUrl = url.toString() + "?" + params;
       }
     });
-
-
   }
   async ngOnInit() {
 

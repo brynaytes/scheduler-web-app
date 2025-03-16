@@ -1,15 +1,16 @@
-import { Inject, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { JwtService } from '../jwt/jwt.service';
 import { environment } from '../../../environments/environment.current';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
-
-export class RequestHandlerService {
-
-
+export class RequestHandler2Service {
+  /**
+   * I really need to move this to be in the version 1 option. 
+   * Also adapt all other references to this to work correclty like the mymeetings page. 
+   */
   constructor(public http: HttpClient) {}
   public url = environment.apiUrl;
 
@@ -20,14 +21,16 @@ export class RequestHandlerService {
 
         const data = {
           "action": action,
-          "user": RequestHandlerService.getUserId(),
+          "user": this.getUserId(),
           "data": obj
         };
 
     let headers = new HttpHeaders({
       'Content-Type': 'application/json', 
       'Access-Control-Allow-Origin': '*',
-      'Authorization' : token
+       'Authorization' : token,
+       //'Mode' : corsMode
+
     });
     let response : any;
      
@@ -35,7 +38,7 @@ export class RequestHandlerService {
     return response;
   }
 
-    public static getUserId() {
+    public  getUserId() {
       let jwtService = new JwtService();
       let token = localStorage.getItem('id_token')
       token = token ? token : "";
