@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { JwtService } from '../services/jwt/jwt.service';
 import { CommonModule } from '@angular/common';
 import { UserActionService } from '../services/user-action/user-action.service';
-import { environment } from '../../environments/environment';
+import { environment } from '../../environments/environment.current';
 
 @Component({
   selector: 'app-shared-header',

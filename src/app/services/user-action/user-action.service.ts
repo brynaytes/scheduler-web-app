@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { TokenStorage } from '../jwt/token-storage';
-import { environment } from '../../../environments/environment';
+import { environment } from '../../../environments/environment.current';
 
 @Injectable({
   providedIn: 'any'
