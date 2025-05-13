@@ -1,7 +1,7 @@
 export const environment = {
     environment : 'stage',
-    cognitoUrl : "https://testing-authentication-bryn.auth.us-east-1.amazoncognito.com",
+    cognitoUrl : "https://scheduler-madness-dev.auth.us-east-1.amazoncognito.com/",
     isProd : false,
-    authUrl : 'https://xqzxb7pm2a.execute-api.us-east-1.amazonaws.com/prod',
-    apiUrl : 'https://pl3dulp1hj.execute-api.us-east-1.amazonaws.com/prod'
+    authUrl : 'https://yy6u5qme97.execute-api.us-east-1.amazonaws.com/dev',
+    apiUrl : 'https://yy6u5qme97.execute-api.us-east-1.amazonaws.com/dev'
 };
