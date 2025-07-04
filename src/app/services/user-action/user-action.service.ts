@@ -16,7 +16,7 @@ export class UserActionService {
 
   async getAuthTokens(code: string): Promise<TokenStorage | undefined> {
     try {
-      const authstuff = await this.http.get<TokenStorage>(this.url + '/login/' + code).toPromise();
+      const authstuff = await this.http.post<TokenStorage>(this.url + '/login/' + code,{}).toPromise();
       return authstuff;
     } catch (error) {
       console.error('Error fetching auth tokens:', error);

@@ -8,11 +8,11 @@ import { environment } from '../../environments/environment.current';
   template: `
     <div class="container">
     <div>
-    <a class="login" href="{{cognitoUrl}}/oauth2/authorize?client_id=4m9eg4mrjosm9d17clp9iqpdhu&response_type=code&scope=openid+test-resource-server%2Ftest+aws.cognito.signin.user.admin+email+phone+profile&redirect_uri={{url}}">login </a>
+    <a class="login" href="{{cognitoUrl}}/login?client_id={{cognitoClientId}}&response_type=code&scope=aws.cognito.signin.user.admin+email+openid+phone+profile&redirect_uri={{url}}">login </a>
     </div>
     <p>or</p>
     <div>
-    <a class="signup" href="{{cognitoUrl}}/signup?client_id=4m9eg4mrjosm9d17clp9iqpdhu&response_type=code&scope=openid+test-resource-server%2Ftest+aws.cognito.signin.user.admin+email+phone+profile&redirect_uri={{url}}">signup </a>
+    <a class="signup" href="{{cognitoUrl}}/signup?client_id={{cognitoClientId}}&response_type=code&scope=openid+test-resource-server%2Ftest+aws.cognito.signin.user.admin+email+phone+profile&redirect_uri={{url}}">signup </a>
     </div>
     </div>
 
@@ -24,6 +24,7 @@ export class LoginComponent {
 
   url : string = encodeURIComponent(window.location.origin+"/login");
   cognitoUrl = environment.cognitoUrl;
+  cognitoClientId = environment.cognitoClientId;
   constructor( public http : HttpClient ) {
 
   }
